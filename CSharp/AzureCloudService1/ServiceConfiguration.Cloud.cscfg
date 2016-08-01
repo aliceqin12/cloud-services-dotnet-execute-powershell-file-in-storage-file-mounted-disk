@@ -3,7 +3,7 @@
   <Role name="WorkerRole1">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=portalvhdsq3pc4g8r65gd8;AccountKey=JkFbc21T6jn5xybJKPsJfchaqeSAYh5COmXa6qn26/vG0OvPUWDUtlGuQfmh8AhTu+/QhHBjKkCT96sRoHeAKA==" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=portalvhdsq3pc4g8r65gd8;AccountKey=" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="gapan" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDXhJyw/uLqrRec1rfvJLsgwDQYJKoZIhvcNAQEBBQAEggEAB+OES5yXU7bj5F86c5xFzc2ACoPEdCDzTngn9hki9LXW/qaJDwiL6Q//ncKUZn28qvv45HuqXZZX8m9+vA7Ou77JVwy+aQQYSpqunHvTcwvuvntP73CUD/n/hD1GYnrGCLbfEiNg8PjtXxS+XVeVITxtetGc2YWitiQKZLULKOIJX6vhBZvMyJnXiztgnOWirtTmkv/WuG4aNKl2VNhRdzMSTUd0q1AJPcx4mwtsU4ib7eQnGlNEaTVd8XSYEn8SQKJ3VvhbSLqiuLotiOatN8WCEsspxZkul8duLxrf7PCE5mff2Po1fNdYgLnn1ioqe90y8S+8RQhB0rpXdFL3PzAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECEZ2jFHpNULfgBDyeTDRohnep9QMSXThNPMd" />
