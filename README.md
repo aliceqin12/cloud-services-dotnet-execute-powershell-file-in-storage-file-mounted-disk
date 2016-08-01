@@ -9,24 +9,24 @@ author: msonecode
 ## Introduction
 When we are using Azure Cloud Service and Azure Storage, we always keep some common files in Azure Storage and make Azure Cloud Service read those files directly from storage service.
 
-In this example, you will learn how to mount an Azure Storage Shared File service as a remote to cloud service instance in startup task.
+In this example, you will learn how to mount an Azure Storage Shared File service as a remote to cloud service instance in a startup task.
 
-You will also learn how to execute a PowerShell script in the startup task and avoid PowerShell policy conflict warning.  
+You will also learn how to execute a PowerShell script in startup tasks and avoid the warning for PowerShell policy conflicts.   
 
 ## Prerequisites
 *__1.	Create Azure File storage__*
 
-Please follow below document to create an Azure File storage.
+Please follow the below document to create an Azure File storage.
 
 https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-files/
 
-You don’t need to run all steps in this document. Just need to create an Azure File folder on Azure portal.
+Instead of running all the steps in this document, you just need to create an Azure File folder in Azure portal.
 
-Please record storage account name and access key. We will use them in further steps.
+Please record the storage account name and access key because they will be used in further steps.
 
 *__2.	Upload test to execute PowerShell script__*
 
-After Azure File storage folder is ready. Please use Azure portal to upload test PowerShell script file.
+After Azure File storage folder is ready, please use Azure portal to upload test PowerShell script file.
 
 In this example, the script file name is “test.ps1”. Below is the content of this file.
 
@@ -44,8 +44,7 @@ https://azure.microsoft.com/en-us/documentation/articles/cloud-services-how-to-c
 ## Building the Sample
 *__1.	Create Solution in Visual Studio 2015__*
 
-Now you can use Visual Studio 2015 to build a cloud service solution.
-This solution contains one cloud service project and a worker role project.
+Now you can use Visual Studio 2015 to build a cloud service solution. This solution contains one cloud service project and a worker role project.
 
 *__2.	Configure Service Definition File__*
 
@@ -75,23 +74,23 @@ This configuration
 <Runtime executionContext="elevated" />
 ```
 
-makes worker role service running under administrator mode. Because we need to use administrator authority to run mount disk command.
+makes worker role service running under administrator mode, since we need to use the administrator authority to run mount disk commands.
 
 *__3.	Write Startup.cmd Content__*
 
-Create an Startup.cmd file to Worker Role project root path.
+Create a Startup.cmd file to Worker Role project root path.
 
-Startup.cmd will set PowerShell global execution policy to prevent to meet policy not enough warning. It also will mount storage file folder as remote disk.
+Startup.cmd will set PowerShell global execution policy to prevent meeting policy-not-enough warning. It will also mount the storage file folder as remote disk.
 
-Please refer the codes in our example solution and replace storage account and access key to yours.
+Please refer to the codes in our example solution and replace the storage account and access key to yours.
 
 *__4.	Write Worker Role Code to execute cmd and PowerShell script__*
 
-Please modify WorkerRole.RunAsync method to below codes.
+Please modify WorkerRole.RunAsync method as below codes.
 
-These codes firstly use administrator role to execute startup.cmd to mount disk.
+These codes run under administrator role at first to execute startup.cmd to mount disk.
 
-Then it execute PowerShell test.ps1
+Then it will execute PowerShell test.ps1
 
 ```c#
         private async Task RunAsync(CancellationToken cancellationToken)
@@ -185,22 +184,22 @@ Before we publish this cloud service, please enable RDP and set a RDP account.
 
 ## Using the Code
 
-You can RDP to instance and check below folder to verity has PowerShell script successfully executed.
+You can RDP to instance and check the following folder to verity that PowerShell script has been successfully executed.
 
 *C:\\Resources\\temp\\[deployment_id].WebRole1\\RoleTemp*
 
 There should be a “PSLog.txt” file under this folder. The file content should be a date time.
 
-Below are some key points you need to understand.
+Here are some key points to understand.
 
-**Why we cannot run startup.cmd in startup task?**
+**Why can’t we run startup.cmd in startup task?**
 
-It is because cloud service startup task and worker role main logic is running under different system accounts.
+It is because cloud service startup task and the main logic of worker role is running under different system accounts.
 
 Windows remote disk is protected by its security setting. Worker role account cannot access the remote disk which was mounted by startup task execution account.
 
-**Why cannot I see the remote disk P when I RDP to the instance?**
+**Why can’t I see the remote disk P when I RDP to the instance?**
 
-The same reason as above question.
+The reason is the same as the above question.
 
-You log into this instance by remote desktop account, but not the account mounted the disk.
+It is the remote desktop account with which you logged into the instance, but not the account that mounted the disk.
