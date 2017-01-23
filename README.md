@@ -171,7 +171,7 @@ Right click cloud service project and choose “Publish…” command.
 
  ![1](./Images/1.png)
 
-Before we publish this cloud service, please enable RDP and set a RDP account.
+Before we publish this cloud service, please enable RDP and set a RDP account. You can click "Enable Remote Desktop for all roles" under Cloud section.
 
  ![2](./Images/2.png)
 
