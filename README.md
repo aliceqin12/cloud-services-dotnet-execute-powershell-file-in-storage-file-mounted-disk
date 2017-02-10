@@ -4,12 +4,12 @@ platforms: dotnet
 author: msonecode
 ---
 
-# How to Execute PowerShell from Mounted Azure Storage File Disk in Azure Cloud Service Worker Role
+# How to execute PowerShell from mounted Azure storage file disks in Azure Cloud service worker role
 
 ## Introduction
-When we are using Azure Cloud Service and Azure Storage, we always keep some common files in Azure Storage and make Azure Cloud Service read those files directly from storage service.
+When we use Azure Cloud Service and Azure Storage, we always keep some common files in Azure Storage and make Azure Cloud Service directly read those files from storage service.
 
-In this example, you will learn how to mount an Azure Storage Shared File service as a remote to cloud service instance in a startup task.
+In this example, you will learn how to mount an Azure Storage shared file service as a remote to cloud service instance in a startup task.
 
 You will also learn how to execute a PowerShell script in startup tasks and avoid the warning for PowerShell policy conflicts.   
 
@@ -26,7 +26,7 @@ Please record the storage account name and access key because they will be used 
 
 *__2.	Upload test to execute PowerShell script__*
 
-After Azure File storage folder is ready, please use Azure portal to upload test PowerShell script file.
+When Azure File storage folder is ready, please use Azure portal to upload test PowerShell script file.
 
 In this example, the script file name is “test.ps1”. Below is the content of this file.
 
@@ -74,21 +74,21 @@ This configuration
 <Runtime executionContext="elevated" />
 ```
 
-makes worker role service running under administrator mode, since we need to use the administrator authority to run mount disk commands.
+makes worker role service run under administrator mode, since we need to use the administrator authority to run mounted disk commands.
 
 *__3.	Write Startup.cmd Content__*
 
 Create a Startup.cmd file to Worker Role project root path.
 
-Startup.cmd will set PowerShell global execution policy to prevent meeting policy-not-enough warning. It will also mount the storage file folder as remote disk.
+Startup.cmd will set PowerShell global execution policy to prevent the policy-not-enough warning. It will also mount the storage file folder as remote disk.
 
-Please refer to the codes in our example solution and replace the storage account and access key to yours.
+Please refer to the codes in our example solution and replace the storage account and access key with yours.
 
 *__4.	Write Worker Role Code to execute cmd and PowerShell script__*
 
 Please modify WorkerRole.RunAsync method as below codes.
 
-These codes run under administrator role at first to execute startup.cmd to mount disk.
+First, these codes run under the administrator role to execute startup.cmd to mount disk.
 
 Then it will execute PowerShell test.ps1
 
@@ -171,20 +171,20 @@ Right click cloud service project and choose “Publish…” command.
 
  ![1](./Images/1.png)
 
-Before we publish this cloud service, please enable RDP and set a RDP account. You can click "Enable Remote Desktop for all roles" under Cloud section.
+Before we publish this cloud service, please enable RDP and set an RDP account. You can click "Enable Remote Desktop for all roles" under Cloud section.
 
  ![2](./Images/2.png)
 
  You can use this RDP account to do below things.
 
- •	RDP to instance to troubleshoot if the startup task failed or FTP configuration failed.
+ •	RDP to the instance to troubleshoot if the startup task or FTP configuration failed.
 
- •	Use this account to login FTP
+ •	Use this account to login FTP.
 
 
 ## Using the Code
 
-You can RDP to instance and check the following folder to verity that PowerShell script has been successfully executed.
+You can RDP to instance and check the following folder to verify that PowerShell script has been successfully executed.
 
 *C:\\Resources\\temp\\[deployment_id].WebRole1\\RoleTemp*
 
